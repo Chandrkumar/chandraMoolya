@@ -1,0 +1,37 @@
+package com.swiggy.Pages;
+import org.testng.annotations.Test;
+import java.io.IOException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
+
+import com.swiggy.GenericUtilis.Utilis;
+import com.swiggy.GenericUtilis.getProperties;
+
+public class HelpPage extends BaseClass{
+	@Test
+	public void HelpDetails() throws InterruptedException, IOException {
+		driver.findElement(By.id(getProperties.getProperty("searchTxtFieldId")))
+		.sendKeys(getProperties.getProperty("deliveryPlaceOfOrder"));
+		Utilis.nap(1000);
+		driver.findElement(By.xpath(getProperties.getProperty("selectOrderLocation"))).click();
+		Utilis.nap(1000);
+		driver.findElement(By.xpath(getProperties.getProperty("helpMenu"))).click();
+		Utilis.nap(1000);
+		driver.findElement(By.xpath(getProperties.getProperty("legalOpt"))).click();
+		WebElement termsofuse = driver.findElement(By.xpath(getProperties.getProperty("TermsOfUse")));
+		Utilis.mouseHover(driver,termsofuse);
+		Utilis.mouseClick(driver,termsofuse);
+		Utilis.nap(4000);
+		Utilis.mouseHover(driver,termsofuse);
+		Utilis.mouseClick(driver,termsofuse);
+		WebElement privacyPolicy = driver.findElement(By.xpath(getProperties.getProperty("privacyPolicy")));
+		Utilis.nap(4000);
+		Utilis.mouseHover(driver,privacyPolicy);
+		Utilis.mouseClick(driver,privacyPolicy);
+		Utilis.nap(2000);
+		Utilis.mouseHover(driver,privacyPolicy);
+		Utilis.mouseClick(driver,privacyPolicy);
+	}
+}

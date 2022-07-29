@@ -1,0 +1,81 @@
+swiggy_Url=https://www.swiggy.com/
+mmt_Url=https://www.makemytrip.com/flights/
+LoginlinkText=Login
+phoneNoFieldId=mobile
+loginBtn1xpath=(//a[text()='Login'])[2]
+otpFieldId=otp
+otp=345673
+VerifyOtpBtn=VERIFY OTP
+otpError_Msg=Invalid OTP - Please try again
+otpErrorMsgXpath =//*[text()='Invalid OTP - Please try again']
+otpText=//div[text()='Enter OTP']
+signUpLnk=Sign up
+************************************************************************************************
+phonenumber=9876543210
+mobileNoField=mobile
+nameField=name
+name=Chandra
+emailField=email
+email_id=chandra123@gmail.com
+passwordField=password
+password=Chandra@111
+continueBtn=//a[text()='CONTINUE']
+signUpTxt=//div[text()='Sign up']
+otpErrorMSgForSignUpField=//div[text()='Invalid or incorrect OTP']
+otpError_MsgSignUp=Invalid or incorrect OTP
+************************************************************************************************
+deliveryPlaceOfOrder=Jalahalli
+searchTxtFieldId=location
+selectOrderLocation=//span/..//*[contains(.,'Jalahalli Cross Road,')]
+searchFood=//span[text()='Search']
+foodItem=Chicken Biryani
+addItemToCart=(//div[text()='ADD'])[1]
+cartMenu=//span[text()='Cart']
+addItem=//div[text()='+']
+foodItem1=masala dosa
+addItemToCart1=//span[text()='Add Item']
+addRepeatLast=//*[text()='REPEAT LAST']
+itemCount=//div[@class='_2zAXs']
+expectedItemCountValue=2
+yesStartBtn=//button[text()='Yes, start afresh']
+************************************************************************************************
+helpMenu=//a[text()='Help']
+legalOpt=//span[text()='Legal']
+privacyPolicy=//span[text()='Privacy Policy']
+termsOfUse=//span[text()='Terms of Use']
+***************************************************************************************************
+offers=//a[text()='Offers']
+offersForYou=//div[text()='Offers for you']
+offersForYouTxt=Offers for you
+offerCoupans=//div[contains(text(),'Payment offers/Coupons')]
+superpremium=//span[contains(text(),'SUPERPREMIUM')]
+copyCode=//*[contains(text(),'COPY CODE')]
+codeCopied=//*[contains(text(),'COPIED')]
+codeCopiedTxt=COPIED
+****************************************************************************************************
+baseURI=https://reqres.in
+getEndPoint=/api/users/2
+email=janet.weaver@reqres.in
+first_name=Janet
+last_name=Weaver
+postEndPoint=/api/users?page=2
+postName=morpheus
+postJob=leader
+putJob=zion resident
+deleteStatus_code=204
+*****************************************************************************************************
+empBaseURI=https://dummy.restapiexample.com/api/v1
+getEndPointEmp=/employee/3
+getEndPointEmpBulk=/employees
+empId=3
+employee_name=Ashton Cox
+employee_salary=86000
+employee_age=66
+createEmp=/create
+updateEmp=/update/21
+deleteEmp=/delete/21
+getExpectSuccessMesg=Successfully! Record has been fetched.
+expectBulkSuccessMessage=Successfully! All records has been fetched.
+expectUpdtSuccessMessage=Successfully! Record has been added.
+expectUpdateSuccMesg=Successfully! Record has been updated.
+expectedDelSuccMsg=Successfully! Record has been deleted

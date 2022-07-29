@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="10" name="Test">
+    <classes>
+      <class name="com.swiggy.Pages.LoginPage"/>
+      <class name="com.swiggy.Pages.LocationPage"/>
+      <class name="com.swiggy.Pages.SignUpPage"/>
+       <class name="com.swiggy.Pages.OffersPage"/>
+      <class name="com.swiggy.Pages.HelpPage"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

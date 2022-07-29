@@ -1,0 +1,68 @@
+package com.swiggy.pages;
+
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
+import java.io.IOException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import com.swiggy.GenericUtilis.Utilis;
+import com.swiggy.GenericUtilis.getProperties;
+
+public class LocationPage extends BaseClass{
+	@Test
+	public void locationpage() throws InterruptedException, IOException {
+		String actualUrl = driver.getCurrentUrl();
+		System.out.println("Actual: " + actualUrl);
+		AssertJUnit.assertEquals(actualUrl, getProperties.getProperty("swiggy_Url"));
+		
+		driver.findElement(By.id(getProperties.getProperty("searchTxtFieldId")))
+		.sendKeys(getProperties.getProperty("deliveryPlaceOfOrder"));
+		Utilis.nap(2000);
+		driver.findElement(By.xpath(getProperties.getProperty("selectOrderLocation"))).click();
+		Utilis.nap(2000);
+		driver.findElement(By.xpath(getProperties.getProperty("searchFood"))).click();
+		Utilis.nap(2000);
+		driver.findElement(By.className("_2FkHZ")).sendKeys(getProperties.getProperty("foodItem"), Keys.ENTER);
+		Utilis.nap(2000);
+		driver.findElement(By.xpath(getProperties.getProperty("addItemToCart"))).click();
+		Utilis.nap(2000);
+		//driver.findElement(By.xpath(getProperties.getProperty("addItemToCart1"))).click();
+		Utilis.nap(2000);
+		WebElement  cart=driver.findElement(By.xpath(getProperties.getProperty("cartMenu")));
+		Utilis.nap(2000);
+		Utilis.mouseHover(driver,cart);
+		Utilis.mouseClick(driver,cart);
+		driver.findElement(By.xpath(getProperties.getProperty("addItem"))).click();
+		Utilis.nap(2000);
+		driver.findElement(By.xpath(getProperties.getProperty("addRepeatLast"))).click();;
+		Utilis.nap(2000);
+		AssertJUnit.assertEquals(""+driver.findElement(By.xpath(getProperties.getProperty("itemCount"))).getText(), 
+				getProperties.getProperty("expectedItemCountValue"), "Failed: items count mismatch");
+		Utilis.nap(2000); 
+		driver.navigate().back();
+		Utilis.nap(2000); 
+		driver.findElement(By.className("_2FkHZ")).clear();
+		Utilis.nap(2000);
+		driver.findElement(By.className("_2FkHZ")).sendKeys(getProperties.getProperty
+		("foodItem1"), Keys.ENTER); 
+		Utilis.nap(3000);
+		Utilis.nap(1000);
+		driver.findElement(By.xpath(getProperties.getProperty("addItemToCart"))).click();
+		Utilis.nap(2000);
+		driver.findElement(By.xpath(getProperties.getProperty("yesStartBtn"))).click();
+		Utilis.nap(2000);
+		driver.findElement(By.xpath(getProperties.getProperty("addItemToCart1"))).click();
+		Utilis.nap(2000);
+		WebElement  cart1=driver.findElement(By.xpath(getProperties.getProperty("cartMenu")));
+		Utilis.nap(1000);
+		Utilis.mouseHover(driver,cart1);
+		Utilis.mouseClick(driver,cart1);
+		Utilis.nap(3000);
+		 
+	}
+}

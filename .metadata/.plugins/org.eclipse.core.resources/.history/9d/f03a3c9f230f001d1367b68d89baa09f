@@ -1,0 +1,83 @@
+package com.api.automation;
+
+import java.io.IOException;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import com.swiggy.GenericUtilis.getProperties;
+import io.restassured.path.json.JsonPath;
+
+public class APITestScripts {
+	
+	@Test(enabled=true, priority=1)
+	public void getSingleEmployeesDetails() throws IOException {
+		String endPoint = getProperties.getProperty("getEndPointEmp");
+		String getResponse = ApiUtilits.getRequest(getProperties.getProperty("empBaseURI"), endPoint);
+		JsonPath jsonPath = new JsonPath(getResponse);
+		
+		Assert.assertTrue(jsonPath.getString("data.id").equalsIgnoreCase(getProperties.getProperty("empId")));
+		Assert.assertTrue(jsonPath.getString("data.employee_name").equalsIgnoreCase(getProperties.getProperty("employee_name")));
+		Assert.assertTrue(jsonPath.getString("data.employee_salary").equalsIgnoreCase(getProperties.getProperty("employee_salary")));
+		Assert.assertTrue(jsonPath.getString("data.employee_age").equalsIgnoreCase(getProperties.getProperty("employee_age")));
+		Assert.assertEquals(jsonPath.getString("message"), getProperties.getProperty("getExpectSuccessMesg"));
+	}
+	
+	@Test(enabled=true, priority=2)
+	public void getBulkEmployeesDetails() throws IOException {
+		String endPoint = getProperties.getProperty("getEndPointEmpBulk");
+		String getResponse = ApiUtilits.getRequest(getProperties.getProperty("empBaseURI"), endPoint);
+		JsonPath jsonPath = new JsonPath(getResponse);
+		
+		Assert.assertTrue(jsonPath.getString("data[2].id").equalsIgnoreCase(getProperties.getProperty("empId")));
+		Assert.assertTrue(jsonPath.getString("data[2].employee_name").equalsIgnoreCase(getProperties.getProperty("employee_name")));
+		Assert.assertTrue(jsonPath.getString("data[2].employee_salary").equalsIgnoreCase(getProperties.getProperty("employee_salary")));
+		Assert.assertTrue(jsonPath.getString("data[2].employee_age").equalsIgnoreCase(getProperties.getProperty("employee_age")));
+		Assert.assertEquals(jsonPath.getString("message"), getProperties.getProperty("expectBulkSuccessMessage"));
+	}
+	
+	@Test(enabled=true, priority=3)
+	public void createEmployeeDetails() throws IOException {
+		String endPoint = getProperties.getProperty("createEmp");
+		String name = getProperties.getProperty("employee_name");
+		String salary = ApiUtilits.generateSalary();
+		String age = ApiUtilits.generateAge();
+		String requestBody = "{\n" +
+				"\"name\": \""+ name +"\",\n" +
+				"\"salary\": \""+ salary +"\",\n" +
+				"\"age\": \""+ age +"\"\n" +
+				"\n"+"}";
+		String postResponse = ApiUtilits.postRequestEmp(getProperties.getProperty("empBaseURI"), endPoint, requestBody);
+		
+		JsonPath jsonPath = new JsonPath(postResponse.toString());
+		Assert.assertEquals(jsonPath.getString("data.name"), name);
+		Assert.assertEquals(jsonPath.getString("data.salary"), salary);
+		Assert.assertEquals(jsonPath.getString("data.age"), age);
+		Assert.assertEquals(jsonPath.getString("message"), getProperties.getProperty("expectUpdtSuccessMessage"));
+	}
+	
+	@Test(enabled=true, priority=4)
+	public void updateEmployeeDetails() throws IOException {
+		String endPoint = getProperties.getProperty("updateEmp");
+		String salary = ApiUtilits.generateSalary();
+		String age = ApiUtilits.generateAge();
+		String requestBody = "{\n" +
+				"\"salary\": \""+ salary +"\",\n" +
+				"\"age\": \""+ age +"\"\n" +
+				"\n"+"}";
+		String postResponse = ApiUtilits.putRequest(getProperties.getProperty("empBaseURI"), endPoint, requestBody);
+		
+		JsonPath jsonPath = new JsonPath(postResponse.toString());
+		Assert.assertEquals(jsonPath.getString("data.salary"), salary);
+		Assert.assertEquals(jsonPath.getString("data.age"), age);
+		Assert.assertEquals(jsonPath.getString("message"), getProperties.getProperty("expectUpdateSuccMesg"));
+	}
+	
+	@Test(enabled=true, priority=5)
+	public void deleteEmployeeDetails() throws IOException {
+		String endPoint = getProperties.getProperty("deleteEmp");
+		String postResponse = ApiUtilits.deleteRequestEmp(getProperties.getProperty("empBaseURI"), endPoint);
+		JsonPath jsonPath = new JsonPath(postResponse.toString());
+		Assert.assertEquals(jsonPath.getString("message"), getProperties.getProperty("expectedDelSuccMsg"));
+	}
+	
+}
